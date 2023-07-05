@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+  <title>Homepage</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="registration.html">Registration</a></li>
+        <li><a href="record.html">Records</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+  <script>
+    // Function to fetch data from the API and update the HTML
+    function fetchNewsData() {
+      const apiKey = "f7d54802ae9d4e2eb6b90d6e456b63ee";
+      const url = ` https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=${apiKey}`;
+
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          const articles = data.articles;
+          const newsContainer = document.getElementById("newsContainer");
+
+          // Clear existing content in the container
+          newsContainer.innerHTML = "";
+
+          // Loop through the articles and create grid items for each
+          articles.forEach(article => {
+            const newsItem = document.createElement("div");
+            newsItem.classList.add("item");
+            newsItem.innerHTML = `
+              <img src="${article.urlToImage}" alt="News Image">
+              <div class="item-content">
+                <h3>${article.title}</h3>
+                <p>${article.description}</p>
+                <a href="${article.url}" target="_blank">Read More</a>
+              </div>
+            `;
+            newsContainer.appendChild(newsItem);
+          });
+        })
+        .catch(error => console.error("Error fetching news data:", error));
+    }
+
+    // Fetch data on page load
+    fetchNewsData();
+  </script>
+
+
+
+  <div class="body-grid">
+    
+    <div class="box">
+      
+      <img src="image1.jpg" alt="Image 1">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+    <div class="box">
+      
+      <img src="image2.jpg" alt="Image 2">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+    <div class="box">
+      
+      <img src="image3.jpg" alt="Image 3">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+    <div class="box">
+ 
+      <img src="image4.jpg" alt="Image 4">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+    <div class="box">
+      
+      <img src="image5.jpg" alt="Image 5">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+    <div class="box">
+   
+      <img src="image6.jpg" alt="Image 6">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+  </div>
+
+  <footer>
+    <p>Summary of the page</p>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#travels">Travels</a></li>
+        <li><a href="#recommendations">Recommendations</a></li>
+        <li><a href="#mission">Mission Statement</a></li>
+        <li><a href="#aboutus">About Us</a></li>
+      </ul>
+    </nav>
+  </footer>
+</body>
+</html>
